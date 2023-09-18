@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Virtual Keyboard</title>
+        <style>body {
+margin: 25px;
+text-align: center;
+}
+h1 {
+color: #26abde;
+}
+.virtual-keyboard .row {
+text-align: center;
+margin: 0 0 3px;
+}
+.virtual-keyboard  button {
+padding: 10px 150px;
+}
+#a{
+padding: 10px 150px;
+}
+.virtual-keyboard button[type='button'] {
+padding: 14px 14px;
+border-radius: 30px;
+border: 3px solid #202c2b;
+background: #13ab9e;
+color: #fff;
+text-transform: uppercase;
+}
+.virtual-keyboard button[type='button'].shift-activated {
+background: red;
+}
+.virtual-keyboard button[type='button'].delete, .virtual-keyboard button[type='button'].shift {
+text-transform: none;
+}
+.output {
+margin: 15px;
+}
+.output button {
+color: white;
+background: black;
+border: 0px;
+line-height: 2.2em;
+text-align: center;
+font-size: 2em;
+width: 100%;
+}
+.output button:focus {
+outline: none;
+border: 0px;
+}
+.output ::-webkit-input-placeholder {
+color: white;
+text-align: center;
+font-size: 1em;
+}</style>
+                  </head>
+    <body>
+     
+
+      <div class="virtual-keyboard">
+                   <form  id="m" > 
+        <div class="row">
+          <button type="button" onclick="jh('1!')" >1!</button>
+          <button type="button" onclick="jh('2@')"  >2@</button>
+          <button type="button" onclick="jh('3#')"  >3#</button>
+          <button type="button" onclick="jh('4$')" >4$</button>
+          <button type="button" onclick="jh('5%')" >5%</button>
+          <button type="button" onclick="jh('6^')" >6^</button>
+          <button type="button" onclick="jh('7&')" >7&</button> 
+          <button type="button" onclick="jh('8*')" >8*</button>
+          <button type="button" onclick="jh('9(')" >9(</button>
+          <button type="button" onclick="jh('0)')" >0)</button>
+          <button type="button" onclick="jh('delete')" >del</button>
+        </div>
+        <div class="row">
+          <button type="button" onclick="jh('tab')" >q</button>
+          <button type="button" onclick="jh('q')" >w</button>
+          <button type="button" onclick="jh('w')" >e</button>
+          <button type="button" onclick="jh('e')" >r</button>
+          <button type="button" onclick="jh('r')" >t</button>
+          <button type="button" onclick="jh('t')" >t</button>
+          <button type="button" onclick="jh('y')" >y</button>
+          <button type="button" onclick="jh('u')" >u</button>
+          <button type="button" onclick="jh('i')" >i</button>
+          <button type="button" onclick="jh('o')" >o</button>
+          <button type="button" onclick="jh('p')" >p</button>
+        </div>
+        <div class="row">
+          <button type="button" onclick="jh('caplock')" >cap</button>
+          <button type="button" onclick="jh('a')" >a</button>
+          <button type="button" onclick="jh('s')" >s</button>
+          <button type="button" onclick="jh('d')" >d</button>
+          <button type="button" onclick="jh('f')" >f</button>
+          <button type="button" onclick="jh('g')" >g</button>
+          <button type="button" onclick="jh('h')" >h</button>
+          <button type="button" onclick="jh('j')" >j</button>
+          <button type="button" onclick="jh('k')" >k</button>
+          <button type="button" onclick="jh('l')" >l</button>
+           <button type="button" onclick="jh(';:')" >;:</button>
+           <button type="button" onclick='jh('"')' >"</button>                 
+        </div>
+        <div class="row">
+          <button type="button" onclick="jh('z')" >z</button>
+          <button type="button" onclick="jh('x')" >x</button>
+          <button type="button" onclick="jh('c')" >c</button>
+          <button type="button" onclick="jh('v')" >v</button>
+          <button type="button" onclick="jh('b')" >b</button>
+          <button type="button" onclick="jh('n')" >n</button>
+          <button type="button" onclick="jh('m')" >m</button>
+          <button type="button" onclick="jh(',<')" >,<</button>
+          <button type="button" onclick="jh('.>')" >.></button>
+          <button type="button" onclick="jh('/?')" >/?</button>                     
+          <button type="button" onclick="jh('shift')" >shift</button>
+        </div>
+        <div class="row spacebar">
+                  <button type="button" onclick="jh()" >ctrl</button>
+          <button type="button" onclick="jh('space')" id="a" >space</button>
+           <button type="button" onclick="jh('enter')" >enter</button>
+        </div>
+        
+      <!--// virtual-keyboard --></form></div>
+
+<div id="n"></div>
+         <!-- jQuery CDN LINK -->
+
+      <!-- JAVASCRIPT FILE LINK -->
+     <script>
+     
+     function jh(p)
+ {    const form = document.getElementById("m");
+  const formData = new FormData(form);
+//  document.getElementById("n").innerHTML ="hai";
+          formData.append("name", p); // Include only "name" field
+  fetch("keyboard.php", {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => response.text())
+            .then((data) => {
+                document.getElementById("n").innerHTML = data; // Display the response from the PHP script in the result div
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+}
+     
+     </script>
+      
+    </body>
+</html>
